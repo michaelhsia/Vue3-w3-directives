@@ -1,0 +1,18 @@
+// 產品細節卡片首圖
+.cardImg {
+  height: 350px;
+}
+
+// 產品細節小圖
+.productImg {
+  width: 200px;
+  height: 200px;
+}
+
+.object-fit-cover {
+  object-fit: cover;
+}
+
+.object-position-center {
+  object-position: center;
+}
