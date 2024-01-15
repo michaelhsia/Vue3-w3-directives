@@ -29,7 +29,6 @@
                 新增商品
               </button>
             </div>
-
             <table class="table table-hover">
               <thead class="table-success">
                 <tr>
@@ -94,9 +93,11 @@
               </caption>
             </table>
           </div>
+          <!-- 產品細節 -->
           <div class="col-md-6">
             <h2>產品細節</h2>
             <!-- 如果有點「查看細節」，tempProduct 會有資料，會顯示此區塊 -->
+            <!-- 編輯商品時，因為這部分是綁定 tempProduct 資料，所以會同步動到 -->
             <div v-if="tempProduct.title">
               <div class="card mb-3">
                 <img
@@ -322,7 +323,7 @@
                       <!-- v-bind 綁定imagesUrl 的所有圖片網址，即時渲染圖片 -->
                       <img class="img-fluid" :src="image" />
                     </div>
-                    <!-- 如果 imagesUrl 長度為 0(第一次點開新增商品時，tempProduct.imagesUrl = []，所以 !false = true，因此會顯示 v-if 內容)，或目前最後一個照片網址有填寫時(input 內有值true 時)。當點開第一次新增圖片後，雖然 push 一個空字串到 imagesUrl 陣列，length 有值了，但是若是用陣列取值去讀取，仍會取得假值，空字串視為 false，所以 false || false 會顯示刪除圖片按鈕 -->
+                    <!-- 如果 imagesUrl 長度為 0(第一次點開新增商品時，tempProduct.imagesUrl = []，所以 !false = true，因此會顯示 v-if 內容)，或目前最後一個照片網址有填寫時(input 內有值true 時)。當第一次點開新增圖片後，雖然 push 一個空字串到 imagesUrl 陣列，length 有值了，但是若是用陣列取值去讀取，仍會取得假值，空字串視為 false，所以 false || false 會顯示刪除圖片按鈕 -->
                     <div
                       v-if="!tempProduct.imagesUrl.length || tempProduct.imagesUrl[tempProduct.imagesUrl.length - 1]"
                     >
