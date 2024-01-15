@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>後台登入頁面</title>
+    <script type="module" crossorigin src="/Vue3-w3-directives/assets/login-8871a4db.js"></script>
+    <link rel="modulepreload" crossorigin href="/Vue3-w3-directives/assets/sweetalert2.all-b5b6d14e.js">
+    <link rel="stylesheet" href="/Vue3-w3-directives/assets/sweetalert2-96b43563.css">
+  </head>
+  <body>
+    <div id="app">
+      <div class="container pt-5">
+        <h1 class="text-center mb-3">請先登入</h1>
+        <div class="row justify-content-center">
+          <div class="col-md-6 col-lg-3">
+            <form>
+              <div class="form-floating mb-3">
+                <input
+                  type="email"
+                  class="form-control"
+                  id="floatingInput"
+                  placeholder="請輸入電子郵件"
+                  v-model="user.username"
+                />
+                <label for="floatingInput">帳號</label>
+              </div>
+              <div class="form-floating mb-3">
+                <input
+                  type="password"
+                  class="form-control"
+                  id="floatingPassword"
+                  placeholder="請輸入密碼"
+                  v-model="user.password"
+                />
+                <label for="floatingPassword">密碼</label>
+              </div>
+              <button
+                type="button"
+                class="w-100 h-25 btn btn-success"
+                @click="loginPost"
+              >
+                登入
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    
+  </body>
+</html>
