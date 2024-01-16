@@ -64,7 +64,7 @@ const app = createApp({
         })
         .catch((err) => alert(`發生錯誤： ${err.response} 請檢查錯誤`));
     },
-    // 開啟彈跳視窗新增或編輯
+    // 開啟彈跳視窗新增、編輯或刪除
     // 第一個參數用來判斷是否為新增，第二個參數為傳入要編輯的商品 item
     openModal(isNew, item) {
       // 如果是新增商品，會清空 tempProduct 中的資料
@@ -187,7 +187,7 @@ const app = createApp({
           });
         });
     },
-    // 新增商品小圖
+    // 新增商品小圖，除非 this.tempProduct 沒有陣列屬性才有機會用到
     createImages() {
       this.tempProduct.imagesUrl = [];
       this.tempProduct.imagesUrl.push("");
@@ -196,7 +196,7 @@ const app = createApp({
   // 這邊單純只要呈現「有幾項商品」，可以從 data 的 products 計算，但不用寫回 data，所以使用 computed
   computed: {
     total() {
-      // 用 Object.keys 計算商品有多少屬性 -> 會回傳一組 id 陣列
+      // 用 Object.keys 計算商品有多少屬性 -> 會回傳一組商品 id 陣列
       const productCount = Object.keys(this.products);
       //  console.log(productCount);
       return productCount.length;

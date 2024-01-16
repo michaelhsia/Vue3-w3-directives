@@ -41,7 +41,7 @@
                 </tr>
               </thead>
               <tbody>
-                <!-- v-for 渲染表格 -->
+                <!-- v-for 渲染表格，記得綁定 :key 唯一值 -->
                 <tr v-for="item in products" :key="item.title">
                   <td>{{ item.title }}</td>
                   <td>{{ item.origin_price }}</td>
@@ -167,6 +167,7 @@
             </div>
             <div class="modal-body">
               <div class="row">
+                <!-- modal 左側內容寬度 -->
                 <div class="col-sm-8">
                   <div class="row">
                     <div class="col-6">
@@ -280,6 +281,7 @@
                     >
                   </div>
                 </div>
+                <!-- modal 右側內容寬度 -->
                 <div class="col-sm-4">
                   <div class="mb-3">
                     <label for="productMainImage" class="form-label"
@@ -302,6 +304,7 @@
                   <!-- 使用 Array.isArray 驗證傳入的值是否為陣列，如果是就回傳 true -->
                   <div v-if="Array.isArray(tempProduct.imagesUrl)">
                     <!-- 用 v-for 跑 tempProduct.imagesUrl，label 的 for 跟 input 的 id 用 key 來綁定 -->
+                    <!-- 陣列裡有空字串有會渲染，不過因為 input value 為空所以不會顯示任何東西 -->
                     <div
                       class="mb-1"
                       v-for="(image, key) in tempProduct.imagesUrl"
@@ -323,10 +326,13 @@
                       <!-- v-bind 綁定imagesUrl 的所有圖片網址，即時渲染圖片 -->
                       <img class="img-fluid" :src="image" />
                     </div>
-                    <!-- 如果 imagesUrl 長度為 0(第一次點開新增商品時，tempProduct.imagesUrl = []，所以 !false = true，因此會顯示 v-if 內容)，或目前最後一個照片網址有填寫時(input 內有值true 時)。當第一次點開新增圖片後，雖然 push 一個空字串到 imagesUrl 陣列，length 有值了，但是若是用陣列取值去讀取，仍會取得假值，空字串視為 false，所以 false || false 會顯示刪除圖片按鈕 -->
+                    <!-- 如果 imagesUrl 長度為 0(第一次點開新增商品前，tempProduct.imagesUrl = []，所以 !false = true，因此會顯示 v-if 內容)，或目前最後一個照片網址有填寫時(input 內有值true 時)。
+                    當第一次點開新增圖片後，雖然 push 一個空字串到 imagesUrl 陣列，length 有值了，但是若是用陣列取值去讀取，仍會取得假值，空字串視為 false，所以 false || false 會顯示刪除圖片按鈕 -->
+                    <!-- 簡言之就是當 imagesUrl 為空陣列，或是有填寫網址時會呈現新增圖片按鈕 -->
                     <div
                       v-if="!tempProduct.imagesUrl.length || tempProduct.imagesUrl[tempProduct.imagesUrl.length - 1]"
                     >
+                      <!-- 長度為 0 或是上一個 input 填滿了，會推一個空字串進去，重新跑 v-for，並且渲染出一個新的空 input 讓人填寫下一個網址 -->
                       <button
                         class="btn btn-outline-success btn-sm d-block w-100"
                         @click="tempProduct.imagesUrl.push('')"
@@ -344,7 +350,7 @@
                     </div>
                   </div>
                   <!-- 如果 tempProduct 沒有 imagesUrl 陣列，就顯示「新增圖片」按鈕，並在按下按鈕後，執行 createImages methods 來推進一個空陣列，進而讓上方 v-if 等於 true，且在輸入網址後可以開始用 v-for 渲染多圖照片 -->
-                  <!-- 好像非必要，除非把所有會為 data 新增的 tempProduct.imagesUrl 的程式碼移除，才會出現該按鈕 -->
+                  <!-- 好像非必要，除非把所有會為 data 新增 tempProduct.imagesUrl 的程式碼移除，才會出現該按鈕 -->
                   <div v-else>
                     <button
                       class="btn btn-outline-primary btn-sm d-block w-100"
