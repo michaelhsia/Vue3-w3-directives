@@ -1,3 +1,4 @@
+import * as bootstrap from "bootstrap/dist/js/bootstrap.min.js";
 import { createApp } from "https://unpkg.com/vue@3/dist/vue.esm-browser.js";
 
 // axios 套件 -> 預設匯入
