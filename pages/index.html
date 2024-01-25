@@ -302,7 +302,7 @@
                   </div>
                   <h5>多圖新增</h5>
                   <!-- 使用 Array.isArray 驗證傳入的值是否為陣列，如果是就回傳 true -->
-                  <div v-if="Array.isArray(tempProduct.imagesUrl)">
+                  <template v-if="Array.isArray(tempProduct.imagesUrl)">
                     <!-- 用 v-for 跑 tempProduct.imagesUrl，label 的 for 跟 input 的 id 用 key 來綁定 -->
                     <!-- 陣列裡有空字串有會渲染，不過因為 input value 為空所以不會顯示任何東西 -->
                     <div
@@ -348,7 +348,7 @@
                         刪除圖片
                       </button>
                     </div>
-                  </div>
+                  </template>
                   <!-- 如果 tempProduct 沒有 imagesUrl 陣列，就顯示「新增圖片」按鈕，並在按下按鈕後，執行 createImages methods 來推進一個空陣列，進而讓上方 v-if 等於 true，且在輸入網址後可以開始用 v-for 渲染多圖照片 -->
                   <!-- 好像非必要，除非把所有會為 data 新增 tempProduct.imagesUrl 的程式碼移除，才會出現該按鈕 -->
                   <div v-else>
